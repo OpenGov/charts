@@ -56,6 +56,16 @@ spec:
               value: "true"
             - name: RUNDECK_LOGGING_STRATEGY
               value: "CONSOLE"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-secrets
+                  key: clusterId
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: kubernetes-secrets
+                  key: clusterSecret
           volumeMounts:
           - name: data
             mountPath: /home/rundeck/server/data
@@ -70,6 +80,7 @@ spec:
         {{- end }}
           - name: kubernetes-secrets
             mountPath: /home/rundeck/.kube/config
+            subPath: config
           ports:
             - name: rundeck
               containerPort: 4440
