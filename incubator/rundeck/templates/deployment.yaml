@@ -80,7 +80,6 @@ spec:
         {{- end }}
           - name: kubernetes-secrets
             mountPath: /home/rundeck/.kube/config
-            subPath: config
           ports:
             - name: rundeck
               containerPort: 4440
