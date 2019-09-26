@@ -81,6 +81,8 @@ spec:
           - name: kubernetes-secrets
             mountPath: /home/rundeck/.kube/config
             subPath: config
+          - name: realm-properties
+            mountPath: /home/rundeck/server-config
           ports:
             - name: rundeck
               containerPort: 4440
@@ -122,6 +124,9 @@ spec:
         - name: kubernetes-secrets
           secret:
             secretName: kubernetes-secrets
+        - name: realm-properties
+          secret:
+            secretName: realm-properties
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
