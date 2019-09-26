@@ -80,7 +80,6 @@ spec:
         {{- end }}
           - name: kubernetes-secrets
             mountPath: /home/rundeck/.kube/config
-            subPath: config
           - name: realm-properties
             mountPath: /home/rundeck/server-config
           ports:
